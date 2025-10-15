@@ -1,0 +1,222 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4vj3n8ym2whs"]
+
+[ext_resource type="Script" path="res://WaveFunctionCollapse.gd" id="1_main"]
+
+[node name="WaveFunctionCollapse" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15, 0.15, 0.18, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "🏝️ Island Generator 🏝️"
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 14
+text = "Procedural island generation using noise-based terrain with WFC principles"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 1
+theme_override_constants/v_separation = 1
+columns = 40
+
+[node name="StatusLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.9, 1)
+theme_override_font_sizes/font_size = 16
+text = "Ready"
+horizontal_alignment = 1
+
+[node name="SizeContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="WidthContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/SizeContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="WidthLabel" type="Label" parent="MarginContainer/VBoxContainer/SizeContainer/WidthContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.9, 1)
+text = "Width: 40"
+vertical_alignment = 1
+
+[node name="WidthSlider" type="HSlider" parent="MarginContainer/VBoxContainer/SizeContainer/WidthContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+min_value = 10.0
+max_value = 60.0
+step = 5.0
+value = 40.0
+
+[node name="HeightContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/SizeContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="HeightLabel" type="Label" parent="MarginContainer/VBoxContainer/SizeContainer/HeightContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.9, 1)
+text = "Height: 30"
+vertical_alignment = 1
+
+[node name="HeightSlider" type="HSlider" parent="MarginContainer/VBoxContainer/SizeContainer/HeightContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+min_value = 10.0
+max_value = 45.0
+step = 5.0
+value = 30.0
+
+[node name="ControlsContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="GenerateButton" type="Button" parent="MarginContainer/VBoxContainer/ControlsContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Generate Island"
+
+[node name="LegendContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="DeepWaterLegend" type="HBoxContainer" parent="MarginContainer/VBoxContainer/LegendContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="DeepWaterColor" type="ColorRect" parent="MarginContainer/VBoxContainer/LegendContainer/DeepWaterLegend"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+color = Color(0.1, 0.3, 0.6, 1)
+
+[node name="DeepWaterLabel" type="Label" parent="MarginContainer/VBoxContainer/LegendContainer/DeepWaterLegend"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.9, 1)
+text = "Deep Water"
+vertical_alignment = 1
+
+[node name="WaterLegend" type="HBoxContainer" parent="MarginContainer/VBoxContainer/LegendContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="WaterColor" type="ColorRect" parent="MarginContainer/VBoxContainer/LegendContainer/WaterLegend"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+color = Color(0.2, 0.5, 0.8, 1)
+
+[node name="WaterLabel" type="Label" parent="MarginContainer/VBoxContainer/LegendContainer/WaterLegend"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.9, 1)
+text = "Water"
+vertical_alignment = 1
+
+[node name="SandLegend" type="HBoxContainer" parent="MarginContainer/VBoxContainer/LegendContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="SandColor" type="ColorRect" parent="MarginContainer/VBoxContainer/LegendContainer/SandLegend"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+color = Color(0.95, 0.9, 0.7, 1)
+
+[node name="SandLabel" type="Label" parent="MarginContainer/VBoxContainer/LegendContainer/SandLegend"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.9, 1)
+text = "Sand"
+vertical_alignment = 1
+
+[node name="GrassLegend" type="HBoxContainer" parent="MarginContainer/VBoxContainer/LegendContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="GrassColor" type="ColorRect" parent="MarginContainer/VBoxContainer/LegendContainer/GrassLegend"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+color = Color(0.4, 0.7, 0.3, 1)
+
+[node name="GrassLabel" type="Label" parent="MarginContainer/VBoxContainer/LegendContainer/GrassLegend"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.9, 1)
+text = "Grass"
+vertical_alignment = 1
+
+[node name="ForestLegend" type="HBoxContainer" parent="MarginContainer/VBoxContainer/LegendContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="ForestColor" type="ColorRect" parent="MarginContainer/VBoxContainer/LegendContainer/ForestLegend"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+color = Color(0.2, 0.5, 0.2, 1)
+
+[node name="ForestLabel" type="Label" parent="MarginContainer/VBoxContainer/LegendContainer/ForestLegend"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.9, 1)
+text = "Forest"
+vertical_alignment = 1
+
+[node name="MountainLegend" type="HBoxContainer" parent="MarginContainer/VBoxContainer/LegendContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="MountainColor" type="ColorRect" parent="MarginContainer/VBoxContainer/LegendContainer/MountainLegend"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+color = Color(0.5, 0.5, 0.5, 1)
+
+[node name="MountainLabel" type="Label" parent="MarginContainer/VBoxContainer/LegendContainer/MountainLegend"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.9, 1)
+text = "Mountain"
+vertical_alignment = 1

@@ -1,0 +1,106 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxw8iq5o5vp4u"]
+
+[ext_resource type="Script" path="res://web_browser.gd" id="1_j3vyh"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j3vyh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="BackButton" type="Button" parent="VBoxContainer/TopBar"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "◄"
+
+[node name="ForwardButton" type="Button" parent="VBoxContainer/TopBar"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "►"
+
+[node name="RefreshButton" type="Button" parent="VBoxContainer/TopBar"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "↻"
+
+[node name="URLInput" type="LineEdit" parent="VBoxContainer/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter URL (e.g., https://www.google.com)"
+expand_to_text_length = true
+
+[node name="GoButton" type="Button" parent="VBoxContainer/TopBar"]
+layout_mode = 2
+text = "Go"
+
+[node name="PresetButtons" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="GoogleButton" type="Button" parent="VBoxContainer/PresetButtons"]
+layout_mode = 2
+text = "Google"
+
+[node name="GithubButton" type="Button" parent="VBoxContainer/PresetButtons"]
+layout_mode = 2
+text = "GitHub"
+
+[node name="GodotButton" type="Button" parent="VBoxContainer/PresetButtons"]
+layout_mode = 2
+text = "Godot Docs"
+
+[node name="WebView" type="Panel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BrowserDisplay" type="TextureRect" parent="VBoxContainer/WebView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StatusLabel" type="Label" parent="VBoxContainer/WebView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Ready to load a website.
+
+In-Game Rendering Active!
+This example uses:
+- CEF (Chromium Embedded Framework) if available
+- Fallback text rendering for HTML content
+
+Click a preset button or enter a URL to view it in-game."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="VBoxContainer/TopBar/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/TopBar/ForwardButton" to="." method="_on_forward_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/TopBar/RefreshButton" to="." method="_on_refresh_button_pressed"]
+[connection signal="text_submitted" from="VBoxContainer/TopBar/URLInput" to="." method="_on_url_input_text_submitted"]
+[connection signal="pressed" from="VBoxContainer/TopBar/GoButton" to="." method="_on_go_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/PresetButtons/GoogleButton" to="." method="_on_google_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/PresetButtons/GithubButton" to="." method="_on_github_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/PresetButtons/GodotButton" to="." method="_on_godot_button_pressed"]

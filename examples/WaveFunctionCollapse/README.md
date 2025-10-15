@@ -114,24 +114,27 @@ This implementation uses WFC + noise weighting, which:
 
 ## Interactive Features
 
-- **Adjustable Grid Size**: Change width (10-60) and height (10-45) with sliders
+- **Adjustable Grid Size**: Change width (10-60) and height (10-45) with sliders in steps of 5
 - **Random Generation**: Each generation creates a unique island with new noise seed
 - **Scrollable View**: Navigate large islands with built-in scroll container
 - **Real-time Feedback**: Status updates show WFC progress
+- **Dynamic Grid Rebuilding**: Grid automatically resizes when you adjust dimensions
 
 ## Implementation Details
 
 ### Files
-- **IslandGenerator.gd**: Core WFC algorithm with weighted collapse
-- **WaveFunctionCollapse.gd**: UI controller and rendering manager
-- **wave_function_collapse.tscn**: Main scene with controls and grid
+- **IslandGenerator.gd**: Core WFC algorithm with weighted collapse and constraint propagation
+- **WaveFunctionCollapse.gd**: UI controller, grid management, and rendering
+- **wave_function_collapse.tscn**: Main scene with sliders, grid container, and controls
+- **TileCell.gd**: Unused legacy file (can be removed)
 
-### Key Functions
-- `initialize_wfc()`: Sets up superposition state
-- `find_lowest_entropy_cell()`: Selects next cell to collapse
-- `collapse_cell()`: Weighted tile selection using noise
-- `propagate_constraints()`: Updates neighbors based on adjacency rules
-- `generate_full()`: Runs complete WFC loop
+### Key Functions in IslandGenerator.gd
+- `initialize_wfc()`: Sets up superposition state (all cells start with all tile possibilities)
+- `find_lowest_entropy_cell()`: Selects next cell to collapse based on fewest possibilities
+- `collapse_cell()`: Performs weighted tile selection using noise + distance for island shape
+- `propagate_constraints()`: Updates neighbors based on adjacency rules using stack-based propagation
+- `generate_full()`: Runs complete WFC loop until all cells are collapsed or max iterations reached
+- `get_tile_weight_for_height()`: Calculates tile fitness based on noise-derived height value
 
 ## Further Reading
 

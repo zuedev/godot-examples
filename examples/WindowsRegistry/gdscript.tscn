@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bka16346ke4w2"]
+
+[ext_resource type="Script" uid="uid://bew76py0cx34c" path="res://RegistryDemo.gd" id="1_plu2t"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_plu2t")
